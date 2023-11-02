@@ -1,32 +1,31 @@
 #!/usr/bin/python3
-"""Module to find the max integer in a list
+"""
+e a function that prints a text with 2 new lines after each of these character
 """
 
-ValueToSmallError = __import__('value_to_small').ValueToSmallError
 
-
-def max_integer(list_data=[]):
-        """Function to find and return the max integer in a list of integers
-        If the list is empty, the function returns None
+def text_indentation(text):
     """
-            try:
-                        if not isinstance(list_data, list):
-                                        raise TypeError("Arguement should be of Datatype list")
-                        elif len(list_data) == 0:
-                                        return None
-                                            for value_type in list_data:
-                                                            if type(value_type) is not int:
-                                                                                raise TypeError(f"value {value_type} not of data type int")
-                                                            else:
-                                                                                continue
-                                                                                    if len(list_data) < 2:
-                                                                                                    return list_data[len(list_data) - 1]
-                                                                                                        result = list_data[0]
-                                                                                                                i = 1
-                                                                                                                        while i < len(list_data):
-                                                                                                                                        if list_data[i] > result:
-                                                                                                                                                            result = list_data[i]
-                                                                                                                                                                        i += 1
-                                                                                                                                                                                return result
-            except TypeError:
-                        raise
+    prints a text with 2 new lines after each of these characters: ., ? and :
+    """
+    try:
+        if not isinstance(text, str):
+            raise TypeError("text must be a string")
+        i = 0
+        new_string = ""
+        while i < len(text):
+            if text[i] in ['?', '.', ':']:
+                new_string += text[i]
+                new_string += "\n\n"
+                if i < len(text) - 1 and text[i + 1] == " ":
+                    i += 1
+                    while text[i] == " ":
+                        i += 1
+                elif i < len(text) - 1 and text[i + 1] != " ":
+                    i += 1
+            else:
+                new_string += text[i]
+                i += 1
+                return print(new_string, end="")
+    except TypeError:
+        raise
